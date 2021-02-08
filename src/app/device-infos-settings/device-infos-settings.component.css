@@ -1,0 +1,29 @@
+::ng-deep .info-snackbar {
+    background: #323232;
+    color: white;
+}
+
+::ng-deep .info-snackbar .mat-simple-snackbar-action {
+    color: white;
+}
+
+::ng-deep .error-snackbar {
+    background: red;
+    color:white;
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
+    color: white;
+}
+
+.form-validation-error-msg {
+    color: red;
+}
+
+.icon-button {
+    transform: scale(2);
+}
+
+.block-buttons {
+    padding-top: 30px;;
+}

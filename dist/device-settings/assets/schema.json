@@ -1,0 +1,76 @@
+{
+	"settings": {
+		"values": {
+			"wifi": {"values": [
+				{"name":"WiFi SSID","key":"ap_ssid","update_allowed":true,"type":"string", "pattern":"^(?=.{0,255}$).*", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":0, "comment":"WIFI SSID can contain only 255 characters"},
+				{"name":"WiFi Key","key":"ap_key","update_allowed":true,"type":"string", "pattern":"^(?=.{0,255}$).*", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":1, "comment":" WIFI key can contain only 255 characters"}
+			], "name":"WiFi Settings", "display_order":1},
+			"api": {"values": [
+				{"name":"Hostname","key":"api_hostname","update_allowed":true,"type":"string", "pattern":"(^(?=.{0,255}$).*)(^(?:(?!http)(?!:).)*$)", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":0, "comment":"Hostname can contain only 255 characters and must not contain nor 'https://' neither 'http://'"},
+				{"name":"Port","key":"api_port","update_allowed":true,"type":"int", "pattern":"^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":1, "comment":" Port must be a value from 1 to 65535"},
+				{"name":"URI","key":"api_uri","update_allowed":true,"type":"string", "pattern":"^\/(?=.{0,255}$).*", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":2, "comment":" URI can contain only 255 characters and must start with character '/'"},
+				{"name":"CLient ID","key":"api_client_id","update_allowed":true,"type":"string", "pattern":"^(?=.{5,255}$).*", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":3, "comment":"Client ID must contain only 255 characters"},
+				{"name":"Authorization Token","key":"api_authorization_token","update_allowed":true,"type":"string", "pattern":"^(?=.{0,255}$).*", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":4, "comment":"Authorization token can contain only 255 characters"},
+				{"name":"Keep-Alive TimeOut (minutes)","key":"api_keepalive_timeout","update_allowed":true,"type":"int", "pattern":"^([1-9]|[1-5][0-9]{0,1}|60)$", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":5, "comment":"API-Server Keep alive timeout must be a value from 1 to 60"}
+			], "name":"API Settings", "display_order":2},
+			"radio": {"values":[
+				{"name":"Device Address","key":"radio_device_id","update_allowed":true,"type":"int", "pattern":"^([1-9]|[1-9][0-9]{0,1}|1[0-9]{2}|200)$", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":0, "comment":"Device Address must be a value from 1 to 200"},
+				{"name":"Server Address","key":"radio_server_id","update_allowed":true,"type":"int", "pattern":"^([1-9]|[1-9][0-9]{0,1}|1[0-9]{2}|200)$", "scope":["SIMPLE-SENSOR"], "display_order":1, "comment":"Server Address must be a value from 1 to 200"},
+				{"name":"Message Signature","key":"radio_message_signature","update_allowed":true,"type":"int",  "pattern":"^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":2, "comment":"Message signature must be a value from 1 to 65535"},
+				{"name":"Output Power","key":"radio_output_power","update_allowed":true,"type":"list","list_items":"list_radio_output_power", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":3},
+				{"name":"Max Retries","key":"radio_max_retries","update_allowed":true,"type":"int", "pattern":"^([0-5])$", "scope":["SIMPLE-SENSOR", "BRIDGE-SERVER-SENSOR"], "display_order":4, "comment":"Maximum retries must be a value from 0 to 5"},
+				{"name":"Keep-Alive TimeOut (minutes)","key":"radio_keepalive_timeout","update_allowed":true,"type":"int", "pattern":"^([1-9]|[1-5][0-9]{0,1}|60)$", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":5, "comment":"Bridge-server Keep alive timeout must be a value from 1 to 60"}
+			], "name":"Radio Settings", "display_order":3},
+			"miscellaneous": {"values":[
+				{"name":"Sensor values measurement Timeout (minutes)","key":"sensor_values_measurement_timeout","update_allowed":true,"type":"int", "pattern":"^([1-9][0-9]{0,2}|1[0-3][0-9]{2}|14[0-3][0-9]|1440)$", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":0, "comment":"Sensorvalues measurement timeout must be a value from 1 to 1440 (24h)"}
+			], "name":"Miscellaneous Settings", "display_order":"4"}
+		},
+		"name":"Settings"
+	},
+	"infos": {
+		"values": {
+			"wifi": {"values": [
+				{"name":"IP","key":"ap_ip","update_allowed":false,"type":"string", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":0},
+				{"name":"Gateway","key":"ap_gateway","update_allowed":false,"type":"string", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":1},
+				{"name":"Mask","key":"ap_mask","update_allowed":false, "type":"string", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":2},
+				{"name":"MAC","key":"ap_mac","update_allowed":false, "type":"string", "scope":["BRIDGE-SERVER-SENSOR"], "display_order":3}
+			], "name":"WIFI Infos", "display_order":0},
+			"device": {"values":[
+				{"name":"CPU UIID","key":"uid","update_allowed":false, "type":"string", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":0},
+				{"name":"Device Type","key":"device_type","update_allowed":false, "type":"list", "list_items":"devices_types", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":1},
+				{"name":"Version","key":"version","update_allowed":false, "type":"string", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":2}
+			], "name":"Device Infos", "display_order":1},
+			"sensor": {"values":[
+				{"name":"Temperature (°)","key":"sensor_temperature_value","update_allowed":false, "type":"float", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":0},
+				{"name":"Humidity (%)","key":"sensor_humidity_value","update_allowed":false, "type":"float", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":1},
+				{"name":"Partial pressure (mmHg)","key":"sensor_partial_pressure_value","update_allowed":false, "type":"float", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":2},
+				{"name":"Dew Point temperature (°)","key":"sensor_dew_point_temperature_value","update_allowed":false, "type":"float", "scope":["BRIDGE-SERVER-SENSOR", "SIMPLE-SENSOR"], "display_order":3}
+			], "name":"Sensor values", "display_order":2}
+		},
+		"name":"Infos"
+	},
+	"params": {
+		"lists": [
+			{
+				"name":"list_radio_output_power",
+				"values": [
+					{"name":"-30dbm", "value":"1"},
+					{"name":"-20dbm", "value":"2"},
+					{"name":"-15dbm", "value":"3"},
+					{"name":"-10dbm", "value":"4"},
+					{"name":"0dbm", "value":"5"},
+					{"name":"5dbm", "value":"6"},
+					{"name":"7dbm", "value":"7"},
+					{"name":"10dbm", "value":"8"}
+				]
+			},
+			{
+				"name":"devices_types",
+				"values": [
+					{"name":"Simple-sensor Device", "value":"SIMPLE-SENSOR"},
+					{"name":"Bridge/Server-sensor Device", "value":"BRIDGE-SERVER-SENSOR"}
+				]
+			}
+		]
+	}
+}

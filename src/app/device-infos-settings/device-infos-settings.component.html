@@ -1,0 +1,62 @@
+<mat-tab-group color="primary" backgroundColor="primary" dynamicHeight>
+    <!-- First Tab: Device Status -->
+    <mat-tab label="Status">
+        <mat-table [dataSource]="m_dataSourceInfos" class="mat-elevation-z7" *ngIf="m_dataSourceInfos">
+            <!-- First column: read-only -->
+            <ng-container matColumnDef="name">
+                <mat-cell *matCellDef="let element"><span [ngStyle]="{'font-weight': element.is_category ? 'bold' : 'normal'}">{{element.name}}</span></mat-cell>
+            </ng-container>
+            
+            <!-- Second column: read-only -->
+            <ng-container matColumnDef="value">
+                <mat-cell *matCellDef="let element">
+                    <span *ngIf="!element.is_category && element.type != 'list'">{{element.value}}</span>
+                    <mat-select [(value)]="element.value" *ngIf="!element.is_category && element.type == 'list'" [disabled]="true">
+                        <mat-option *ngFor="let listItem of element.list_items" [value]="listItem.value">{{listItem.name}}</mat-option>
+                    </mat-select>
+                </mat-cell>
+            </ng-container>
+            <mat-row mat-row *matRowDef="let row; columns: ['name', 'value'];"></mat-row>
+        </mat-table>
+    </mat-tab>
+    <!-- Second Tab: Device Parameters-->
+    <mat-tab label="Params">
+        <app-spinner-overlay *ngIf="m_bShowSpinner"></app-spinner-overlay>
+        <div>
+            <form [formGroup]="m_formGroupSettings" *ngIf="m_formGroupSettings">
+                <mat-table [dataSource]="m_dataSourceSettings" *ngIf="m_dataSourceSettings" class="mat-elevation-z7">
+                    <!-- First column: read-only -->
+                    <ng-container matColumnDef="name">
+                        <mat-cell *matCellDef="let element"><span [ngStyle]="{'font-weight': element.is_category ? 'bold' : 'normal'}">{{element.name}}</span></mat-cell>
+                    </ng-container>
+
+                    <!-- Second column: -->
+                    <ng-container matColumnDef="value">
+                        <mat-cell *matCellDef="let element">
+                            <mat-form-field floatLabel="never" *ngIf="!element.is_category && element.update_allowed">
+                                <!-- Not a list, then display an MAT-INPUT. Usage of formControlName forbides ngModel utilisation -->
+                                <ng-container *ngIf="element.type != 'list'"> 
+                                    <input matInput (keyup)="onKeyUp($event, element)" [formControlName]="element.key">
+                                    <small class="form-validation-error-msg" *ngIf="m_formGroupSettings.get(element.key).invalid">{{element.comment}}</small>   
+                                </ng-container> 
+                                <!-- list, then display a MAT-SELECT -->
+                                <mat-select [(value)]="element.value" *ngIf="element.type == 'list'">
+                                    <mat-option *ngFor="let listItem of element.list_items" [value]="listItem.value">{{listItem.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <span *ngIf="!element.is_category && !element.update_allowed">{{element.value}}</span>
+                        </mat-cell>
+                    </ng-container> 
+                    <mat-row *matRowDef="let row; columns: ['name', 'value'];"></mat-row>
+                </mat-table>
+            </form>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="block-buttons">
+            <button mat-icon-button (click)="onClickSendSettingsToDevice()" [disabled]="!m_formGroupSettings.valid" *ngIf="m_formGroupSettings" matTooltip="Send to device" class="icon-button" color="primary"><mat-icon>memory</mat-icon></button>
+            <button mat-icon-button (click)="fileInput.click()" matTooltip="Load settings file" class="icon-button" color="primary"><mat-icon>download</mat-icon></button>
+            <input type="file" hidden (change)="onClickSelectFile($event)" #fileInput>
+            <button mat-icon-button (click)="onClickSaveFile()" matTooltip="Save settings file" class="icon-button" color="primary"><mat-icon>upload</mat-icon></button>
+            <button mat-icon-button (click)="onClickFactoryReset()" matTooltip="Factory Reset" class="icon-button" color="primary"><mat-icon>home_work</mat-icon></button>
+        </div>
+    </mat-tab>
+</mat-tab-group>

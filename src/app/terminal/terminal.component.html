@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center start" style="padding-left:10px;padding-right:20px;">
+    <div>
+        <form>
+            <mat-form-field >
+                <div><mat-label>AT command:</mat-label></div>
+                <div>
+                    <input matInput size="200" (keyup.enter)="onSubmit($event)" [matAutocomplete]="auto" [formControl]="m_inputFormCtrl" placeholder="Enter AT command + press Enter" #childATCommandTrigger>
+                    <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of m_filteredATCommandsList | async" [value]="option">
+                        {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </mat-form-field>
+        </form>
+    </div>
+    <div style="width: 100%;padding-top:15px;">
+        <textarea readonly style="height: 400px; width:100%;" #childATResponses>{{m_strTextareaValue}}</textarea>
+    </div>
+</div>

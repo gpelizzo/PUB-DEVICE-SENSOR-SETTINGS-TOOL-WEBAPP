@@ -1,0 +1,8 @@
+<app-spinner-overlay *ngIf="m_bShowSpinner"></app-spinner-overlay>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div style="width: 500px;text-align: center;padding-top: 90px;"><span style="font-size: xx-large;color: gray;line-height: 1.6;">Connect device to USB and click on 'Connect'</span></div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="block-buttons">
+        <div class="div-button"><button mat-flat-button (click)="onClickConnect()" [disabled]="m_bDeviceConnected" matTooltip="Connect to device" color="primary" style="width: 100px;;">Connect</button></div>
+        <div class="div-button"><button mat-flat-button (click)="onClickDisconnect()" [disabled]="!m_bDeviceConnected" matTooltip="Disconnect from device" color="primary" style="width: 100px;;">Disconnect</button></div>
+    </div>
+</div>
