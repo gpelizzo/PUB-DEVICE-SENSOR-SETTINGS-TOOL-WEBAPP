@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TerminalComponent } from './terminal.component';
+import { CTerminalComponent } from './terminal.component';
 
 describe('TerminalComponent', () => {
-  let component: TerminalComponent;
-  let fixture: ComponentFixture<TerminalComponent>;
+  let component: CTerminalComponent;
+  let fixture: ComponentFixture<CTerminalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TerminalComponent ]
+      declarations: [ CTerminalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TerminalComponent);
+    fixture = TestBed.createComponent(CTerminalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

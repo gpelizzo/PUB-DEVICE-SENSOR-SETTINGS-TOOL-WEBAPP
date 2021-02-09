@@ -22,9 +22,8 @@ import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-import { SerialPortService } from './../serial-port.service';
+import { CSerialPortService } from './../serial-port.service';
 import * as GLOBALS from './../globals';
 
 /**
@@ -35,7 +34,7 @@ import * as GLOBALS from './../globals';
   templateUrl: './terminal.component.html',
   styleUrls: ['./terminal.component.css']
 })
-export class TerminalComponent implements OnInit {
+export class CTerminalComponent implements OnInit {
   public m_strTextareaValue: String = '';
   public m_inputValue: any = '';
   public m_ATCommandsList: any[];
@@ -43,6 +42,7 @@ export class TerminalComponent implements OnInit {
   public m_inputFormCtrl = new FormControl();
   
   private m_unsubscribe = new Subject<any>();
+  private m_serialPosrtService: CSerialPortService;
 
   @ViewChild('childATResponses', {static: false}) m_ATResponsesTextArea: ElementRef<HTMLTextAreaElement>;
   @ViewChild('childATCommandTrigger', { read: MatAutocompleteTrigger }) m_ATCommandInputTrigger: MatAutocompleteTrigger;
@@ -50,7 +50,8 @@ export class TerminalComponent implements OnInit {
   /**
   *   Constructor
 	*/ 
-  constructor(public p_serialPosrtService: SerialPortService) { 
+  constructor(p_serialPosrtService: CSerialPortService) { 
+    this.m_serialPosrtService = p_serialPosrtService;
   }
 
   /**
@@ -65,7 +66,7 @@ export class TerminalComponent implements OnInit {
   ngOnInit(): void {
     /*Subscribe to serial-port-service in order to be notified when events 
     occured: connect, disconnect and incomming payload*/
-    this.p_serialPosrtService.subscribeIncomming().subscribe((p_message: any) => {
+    this.m_serialPosrtService.subscribeIncomming().subscribe((p_message: any) => {
       switch (p_message.type) 
       {
         case GLOBALS.ENM_SERIAL_PORT_EVENT.SERIAL_PAYLOAD:
@@ -112,7 +113,7 @@ export class TerminalComponent implements OnInit {
 	*/ 
   public onSubmit(p_evt: any) {
     /*Send AT command to the WEBUSB device via serial-port service*/
-    this.p_serialPosrtService.send(p_evt.target.value).then((p_result: any) => {
+    this.m_serialPosrtService.send(p_evt.target.value).then((p_result: any) => {
       /*clear value of the AT command input component*/
       this.m_inputFormCtrl.setValue('');
 
