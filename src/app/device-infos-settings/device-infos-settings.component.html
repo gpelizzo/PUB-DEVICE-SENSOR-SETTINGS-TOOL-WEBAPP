@@ -1,6 +1,6 @@
 <mat-tab-group color="primary" backgroundColor="primary" dynamicHeight>
     <!-- First Tab: Device Status -->
-    <mat-tab label="Status">
+    <mat-tab label="Infos">
         <mat-table [dataSource]="m_dataSourceInfos" class="mat-elevation-z7" *ngIf="m_dataSourceInfos">
             <!-- First column: read-only -->
             <ng-container matColumnDef="name">
@@ -20,7 +20,7 @@
         </mat-table>
     </mat-tab>
     <!-- Second Tab: Device Parameters-->
-    <mat-tab label="Params">
+    <mat-tab label="Settings">
         <app-spinner-overlay *ngIf="m_bShowSpinner"></app-spinner-overlay>
         <div>
             <form [formGroup]="m_formGroupSettings" *ngIf="m_formGroupSettings">
