@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SerialPortService } from './serial-port.service';
-import { MainContainerComponent } from './main-container/main-container.component';
-import { TerminalComponent } from './terminal/terminal.component';
-import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
-import { ConnectionComponent } from './connection/connection.component';
-import { DeviceInfosSettingsComponent } from './device-infos-settings/device-infos-settings.component';
+import { CSerialPortService } from './serial-port.service';
+import { CMainContainerComponent } from './main-container/main-container.component';
+import { CTerminalComponent } from './terminal/terminal.component';
+import { CSpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import { CConnectionComponent } from './connection/connection.component';
+import { CDeviceInfosSettingsComponent } from './device-infos-settings/device-infos-settings.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -29,11 +29,11 @@ import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
-    MainContainerComponent,
-    TerminalComponent,
-    DeviceInfosSettingsComponent,
-    SpinnerOverlayComponent,
-    ConnectionComponent
+    CMainContainerComponent,
+    CTerminalComponent,
+    CDeviceInfosSettingsComponent,
+    CSpinnerOverlayComponent,
+    CConnectionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTooltipModule
   ],
   providers: [
-    SerialPortService
+    CSerialPortService
   ],
   bootstrap: [AppComponent]
 })
