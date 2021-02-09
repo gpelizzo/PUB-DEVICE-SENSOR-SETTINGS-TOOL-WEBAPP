@@ -32,7 +32,7 @@ enum ENM_TABS_INDEX {
   templateUrl: './main-container.component.html',
   styleUrls: ['./main-container.component.css']
 })
-export class MainContainerComponent implements OnInit {
+export class CMainContainerComponent implements OnInit {
   public m_bEnableTerminalComponent: boolean = false;
   public m_bEnableDeviceInfosSettingsComponent: boolean = false;
 
