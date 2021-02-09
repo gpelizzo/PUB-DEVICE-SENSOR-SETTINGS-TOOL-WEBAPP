@@ -21,10 +21,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-import { SerialPortService } from '../serial-port.service';
+import { CSerialPortService } from '../serial-port.service';
 import * as GLOBALS from '../globals';
 
 enum ENM_SNACKBAR_MSG_TYPE {
@@ -53,9 +51,9 @@ enum ENM_SCHEMA {
   templateUrl: './device-infos-settings.component.html',
   styleUrls: ['./device-infos-settings.component.css']
 })
-export class DeviceInfosSettingsComponent implements OnInit {
+export class CDeviceInfosSettingsComponent implements OnInit {
   
-  private m_serialPortService: SerialPortService;
+  private m_serialPortService: CSerialPortService;
   private m_strATResponseBuffer: string;
   private m_http: HttpClient;
   private m_jsonSchemaInfosSettings: any = null;
@@ -72,7 +70,7 @@ export class DeviceInfosSettingsComponent implements OnInit {
   /**
   *   Constructor
 	*/  
-  constructor(p_serialPosrtService: SerialPortService, p_http: HttpClient, p_formBuilder: FormBuilder, private changeDetectorRefs: ChangeDetectorRef, p_snackBar: MatSnackBar) { 
+  constructor(p_serialPosrtService: CSerialPortService, p_http: HttpClient, p_formBuilder: FormBuilder, private changeDetectorRefs: ChangeDetectorRef, p_snackBar: MatSnackBar) { 
     this.m_serialPortService = p_serialPosrtService;
     this.m_http = p_http;
     this.m_formBuilder = p_formBuilder;

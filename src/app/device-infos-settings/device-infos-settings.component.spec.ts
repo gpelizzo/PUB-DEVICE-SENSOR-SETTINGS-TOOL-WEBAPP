@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeviceInfosSettingsComponent } from './device-infos-settings.component';
+import { CDeviceInfosSettingsComponent } from './device-infos-settings.component';
 
 describe('DeviceSettingsComponent', () => {
-  let component: DeviceInfosSettingsComponent;
-  let fixture: ComponentFixture<DeviceInfosSettingsComponent>;
+  let component: CDeviceInfosSettingsComponent;
+  let fixture: ComponentFixture<CDeviceInfosSettingsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeviceInfosSettingsComponent ]
+      declarations: [ CDeviceInfosSettingsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeviceInfosSettingsComponent);
+    fixture = TestBed.createComponent(CDeviceInfosSettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
