@@ -17,10 +17,8 @@
 */
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-import { SerialPortService } from './../serial-port.service';
+import { CSerialPortService } from './../serial-port.service';
 import * as GLOBALS from './../globals';
 
 enum ENM_AT_RESPONSE_PENDING {
@@ -36,8 +34,8 @@ enum ENM_AT_RESPONSE_PENDING {
   templateUrl: './connection.component.html',
   styleUrls: ['./connection.component.css']
 })
-export class ConnectionComponent implements OnInit {
-  private m_serialPortService: SerialPortService;
+export class CConnectionComponent implements OnInit {
+  private m_serialPortService: CSerialPortService;
   private m_ATResponsePending:ENM_AT_RESPONSE_PENDING = ENM_AT_RESPONSE_PENDING.WAIT_RESP_SET_NONE;
   private m_strATResponseBuffer: string = '';
 
@@ -50,7 +48,7 @@ export class ConnectionComponent implements OnInit {
   /**
   *   Constructor
 	*/  
-  constructor(p_serialPosrtService: SerialPortService) { 
+  constructor(p_serialPosrtService: CSerialPortService) { 
     this.m_serialPortService = p_serialPosrtService;
   }
 
